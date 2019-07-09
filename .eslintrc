@@ -1,5 +1,7 @@
 {
   "parser": "babel-eslint",
   "extends": "airbnb",
-  "rules": {}
+  "rules": {
+    "react/jsx-one-expression-per-line": "off"
+  }
 }

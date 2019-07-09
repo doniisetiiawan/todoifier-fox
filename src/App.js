@@ -1,26 +1,15 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
-import logo from './logo.svg';
+import Todo from './Todo';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <h2>Todoifier</h2>
+    <br />
+    <Todo description="Do the thing" />
+    <Todo description="Do another thing" />
+  </div>
+);
 
 export default App;
