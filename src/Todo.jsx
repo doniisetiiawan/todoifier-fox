@@ -1,10 +1,11 @@
+/* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import './Todo.css';
 
 class Todo extends Component {
   static propTypes = {
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
   };
 
   constructor(props) {
@@ -30,8 +31,7 @@ class Todo extends Component {
 
   removeTodo = () => {
     // eslint-disable-next-line react/prop-types
-    const { removeTodo: removeTodo1 } = this.props;
-    const { description } = this.state;
+    const { removeTodo: removeTodo1, description } = this.props;
     removeTodo1(description);
   };
 
