@@ -6,7 +6,15 @@ import './TodoList.css';
 class TodoList extends Component {
   constructor(props) {
     super(props);
-    this.state = { items: ['Item #1', 'Item #2', 'Item #3'] };
+    const [item1, item2, ...rest] = [
+      'Write some code',
+      'Change the world',
+      'Take a nap',
+      'Eat a cookie',
+    ];
+    this.state = {
+      items: [item1, item2, rest.join(' and ')],
+    };
   }
 
   addTodo = (item) => {
