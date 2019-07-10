@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo renders and matches our snapshot 1`] = `
+<div
+  className="Todo"
+>
+  Yo
+  <br />
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Mark as Done
+  </button>
+  <button
+    onClick={[Function]}
+    type="button"
+  >
+    Remove Me
+  </button>
+</div>
+`;

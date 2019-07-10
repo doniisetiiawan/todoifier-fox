@@ -16,4 +16,10 @@ describe(Todo, () => {
     ReactDOM.render(<Todo />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
+  it('renders and matches our snapshot', () => {
+    // eslint-disable-next-line no-shadow
+    const component = renderer.create(<Todo description="Yo" />);
+    const tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });
