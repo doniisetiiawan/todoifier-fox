@@ -8,14 +8,21 @@ const details = {
   headerColor: 'red',
 };
 
+const moreDetails = {
+  ...details,
+  header: 'Best Todoifier',
+  background: 'black',
+};
+
 const headerDisplay = ({
   header: title = 'Todo List',
   headerColor: color = 'blue',
-}) => <h2 style={{ color }}>{title}</h2>;
+  background: background = 'none',
+}) => <h2 style={{ color, background }}>{title}</h2>;
 
 const App = () => (
   <div className="App">
-    {headerDisplay(details)}
+    {headerDisplay(moreDetails)}
     <br />
     <TodoList />
   </div>
