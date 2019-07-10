@@ -28,6 +28,13 @@ class Todo extends Component {
     return classes.join(' ');
   };
 
+  removeTodo = () => {
+    // eslint-disable-next-line react/prop-types
+    const { removeTodo: removeTodo1 } = this.props;
+    const { description } = this.state;
+    removeTodo1(description);
+  };
+
   render() {
     const { description } = this.state;
     return (
@@ -38,6 +45,11 @@ class Todo extends Component {
           type="button"
           onClick={this.markAsDone}
         >Mark as Done
+        </button>
+        <button
+          type="button"
+          onClick={this.removeTodo}
+        >Remove Me
         </button>
       </div>
     );
