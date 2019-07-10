@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Todo from './Todo';
 import NewTodo from './NewTodo';
 import './TodoList.css';
@@ -33,11 +33,13 @@ class TodoList extends Component {
   renderItems() {
     const { items } = this.state;
     return items.map(description => (
-      <Todo
-        key={description}
-        description={description}
-        removeTodo={this.removeTodo}
-      />
+      <Fragment key={`item-${description}`}>
+        <Todo
+          key={description}
+          description={description}
+          removeTodo={this.removeTodo}
+        />
+      </Fragment>
     ));
   }
 
