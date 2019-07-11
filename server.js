@@ -18,5 +18,9 @@ const todos = [
 app.use(express.json());
 
 app.get('/api/todos', (req, res) => res.json({ todos }));
+app.post('/api/todos', (req, res) => {
+  const body = { id: todos.length + 1, ...req.body };
+  res.json({ todos: [...todos, body] });
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
