@@ -10,3 +10,7 @@
 .Done {
     background: #f58888;
 }
+
+hr {
+    border: 2px solid red !important;
+}

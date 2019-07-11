@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import Todo from './Todo';
-import NewTodo from './NewTodo';
+import Todo from '../Todo';
+import NewTodo from '../NewTodo';
 import './TodoList.css';
 
 class TodoList extends Component {

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-filename-extension,react/prop-types */
 import React from 'react';
-import TodoList from './TodoList';
+import TodoList from '../TodoList';
 import './App.css';
 
 const details = {
