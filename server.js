@@ -22,5 +22,9 @@ app.post('/api/todos', (req, res) => {
   const body = { id: todos.length + 1, ...req.body };
   res.json({ todos: [...todos, body] });
 });
+app.delete('/api/todos/:id', (req, res) => {
+  const todoId = parseInt(req.params.id, 10);
+  res.json({ todos: todos.filter(t => t.id !== todoId) });
+});
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
