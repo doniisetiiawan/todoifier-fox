@@ -1,7 +1,8 @@
 /* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import './Todo.css';
+
+import styles from './Todo.module.css';
 
 class Todo extends Component {
   static propTypes = {
@@ -21,10 +22,10 @@ class Todo extends Component {
   };
 
   cssClasses = () => {
-    let classes = ['Todo'];
+    let classes = [styles.todo];
     const { done } = this.state;
     if (done) {
-      classes = [...classes, 'Done'];
+      classes = [...classes, styles.done];
     }
     return classes.join(' ');
   };
@@ -40,7 +41,7 @@ class Todo extends Component {
     return (
       <div className={this.cssClasses()}>
         {description}
-        <br />
+        <hr className={styles.redDivider} />
         <button
           type="button"
           className="MarkDone"
