@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import styles from './Todo.module.css';
+import styles from './Todo.module.scss';
 
 class Todo extends Component {
   static propTypes = {
