@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Input, InputGroup } from 'reactstrap';
 import './NewTodo.css';
 
 class NewTodo extends Component {
@@ -23,13 +24,19 @@ class NewTodo extends Component {
      const { item } = this.state;
      return (
        <div className="NewTodo">
-         <input
-           type="text"
-           onChange={this.handleUpdate}
-           value={item}
-         />
-        &nbsp;&nbsp;
-         <button type="button" onClick={this.addTodo}>Add</button>
+         <InputGroup>
+           <Input
+             type="text"
+             onChange={this.handleUpdate}
+             value={item}
+             placeholder="Input item name here..."
+           />
+           <Button
+             onClick={this.addTodo}
+             color="primary"
+           >Add
+           </Button>
+         </InputGroup>
        </div>
      );
    }
