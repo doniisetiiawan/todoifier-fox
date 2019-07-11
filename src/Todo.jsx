@@ -43,11 +43,13 @@ class Todo extends Component {
         <br />
         <button
           type="button"
+          className="MarkDone"
           onClick={this.markAsDone}
         >Mark as Done
         </button>
         <button
           type="button"
+          className="RemoveTodo"
           onClick={this.removeTodo}
         >Remove Me
         </button>
