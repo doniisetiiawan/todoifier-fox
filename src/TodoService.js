@@ -25,7 +25,7 @@ const createTodo = async (description) => {
 
 const deleteTodo = async (todoId) => {
   const res = await fetch(
-    `http://localhost:4000/api/todos${todoId}`, {
+    `http://localhost:4000/api/todos/${todoId}`, {
       method: 'DELETE',
       headers: { accept: 'application/json' },
     },

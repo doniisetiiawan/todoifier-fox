@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Todo from '../Todo';
 import NewTodo from '../NewTodo';
+import { createTodo, deleteTodo, fetchTodos } from '../TodoService';
 
 import './TodoList.css';
 
@@ -13,26 +14,14 @@ class TodoList extends Component {
     };
   }
 
-  componentDidMount = async () => {
-    const res = await fetch(
-      'http://localhost:4000/api/todos',
-      { accept: 'application/json' },
-    );
-    const json = await res.json();
-    this.setState(
-      { items: json.todos, loaded: true },
-    );
-  };
+  async componentDidMount() {
+    const { todos } = await fetchTodos();
+    this.setState({ items: todos, loaded: true });
+  }
 
   addTodo = async (description) => {
-    const res = await fetch(
-      'http://localhost:4000/api/todos', {
-        method: 'POST',
-        headers: { accept: 'application/json', 'content-type': 'application/json' },
-        body: JSON.stringify({ description, critical: false, done: false }),
-      },
-    );
-    if (res.status === 200) {
+    const { status } = await createTodo(description);
+    if (status === 200) {
       const { items } = this.state;
       const newItem = {
         id: items.length + 1,
@@ -46,17 +35,12 @@ class TodoList extends Component {
     }
   };
 
-  removeTodo = async (removeItemId) => {
-    const res = await fetch(
-      `http://localhost:4000/api/todos/${removeItemId}`, {
-        method: 'DELETE',
-        headers: { accept: 'application/json', 'content-type': 'application/json' },
-      },
-    );
-    if (res.status === 200) {
+  removeTodo = async (todoId) => {
+    const { status } = await deleteTodo(todoId);
+    if (status === 200) {
       const { items } = this.state;
       const filteredItems = items.filter(
-        todo => todo.id !== removeItemId,
+        todo => todo.id !== todoId,
       );
       this.setState({ items: filteredItems });
     }
