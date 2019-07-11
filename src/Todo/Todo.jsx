@@ -10,6 +10,7 @@ class Todo extends Component {
     critical: PropTypes.bool,
     description: PropTypes.string,
     done: PropTypes.bool,
+    id: PropTypes.number,
   };
 
   constructor(props) {
@@ -40,8 +41,8 @@ class Todo extends Component {
 
   removeTodo = () => {
     // eslint-disable-next-line react/prop-types
-    const { removeTodo: removeTodo1, description } = this.props;
-    removeTodo1(description);
+    const { removeTodo: removeTodo1, id } = this.props;
+    removeTodo1(id);
   };
 
   markCritical = () => {

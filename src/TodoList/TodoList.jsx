@@ -46,9 +46,9 @@ class TodoList extends Component {
     }
   };
 
-  removeTodo = async (description) => {
+  removeTodo = async (removeItemId) => {
     const res = await fetch(
-      `http://localhost:4000/api/todos/${description}`, {
+      `http://localhost:4000/api/todos/${removeItemId}`, {
         method: 'DELETE',
         headers: { accept: 'application/json', 'content-type': 'application/json' },
       },
@@ -56,7 +56,7 @@ class TodoList extends Component {
     if (res.status === 200) {
       const { items } = this.state;
       const filteredItems = items.filter(
-        todo => todo.description !== description,
+        todo => todo.id !== removeItemId,
       );
       this.setState({ items: filteredItems });
     }
