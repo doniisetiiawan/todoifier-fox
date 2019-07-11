@@ -24,12 +24,6 @@ class TodoList extends Component {
     );
   };
 
-  removeTodo = (removeItem) => {
-    const { items } = this.state;
-    const filteredItems = items.filter(todo => todo.description !== removeItem);
-    this.setState({ items: filteredItems });
-  };
-
   addTodo = async (description) => {
     const res = await fetch(
       'http://localhost:4000/api/todos', {
@@ -49,6 +43,22 @@ class TodoList extends Component {
       this.setState({
         items: [...items, newItem],
       });
+    }
+  };
+
+  removeTodo = async (description) => {
+    const res = await fetch(
+      `http://localhost:4000/api/todos/${description}`, {
+        method: 'DELETE',
+        headers: { accept: 'application/json', 'content-type': 'application/json' },
+      },
+    );
+    if (res.status === 200) {
+      const { items } = this.state;
+      const filteredItems = items.filter(
+        todo => todo.description !== description,
+      );
+      this.setState({ items: filteredItems });
     }
   };
 
