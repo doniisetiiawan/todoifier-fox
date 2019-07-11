@@ -1,0 +1,37 @@
+const fetchTodos = async () => {
+  const res = await fetch(
+    'http://localhost:4000/api/todos',
+    { accept: 'application/json' },
+  );
+  const json = await res.json();
+  return { status: res.status, todos: json.todos };
+};
+
+const createTodo = async (description) => {
+  const res = await fetch(
+    'http://localhost:4000/api/todos', {
+      method: 'POST',
+      headers: { accept: 'application/json' },
+      body: JSON.stringify({
+        description,
+        critical: false,
+        done: false,
+      }),
+    },
+  );
+  const json = await res.json();
+  return { status: res.status, todos: json.todos };
+};
+
+const deleteTodo = async (todoId) => {
+  const res = await fetch(
+    `http://localhost:4000/api/todos${todoId}`, {
+      method: 'DELETE',
+      headers: { accept: 'application/json' },
+    },
+  );
+  const json = await res.json();
+  return { status: res.status, todos: json.todos };
+};
+
+export { fetchTodos, createTodo, deleteTodo };
