@@ -1,6 +1,7 @@
 /* eslint-disable react/require-default-props */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Button, ButtonGroup } from 'reactstrap';
 
 import styles from './Todo.module.scss';
 
@@ -12,7 +13,6 @@ class Todo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: props.description,
       done: false,
       critical: false,
     };
@@ -47,29 +47,35 @@ class Todo extends Component {
   };
 
   render() {
-    const { description } = this.state;
+    const { description } = this.props;
     return (
       <div className={this.cssClasses()}>
         {description}
-        <hr className={styles.redDivider} />
-        <button
-          type="button"
-          className="MarkDone"
-          onClick={this.markAsDone}
-        >Mark as Done
-        </button>
-        <button
-          type="button"
-          className="RemoveTodo"
-          onClick={this.removeTodo}
-        >Remove Me
-        </button>
-        <button
-          type="button"
-          className="MarkCritical"
-          onClick={this.markCritical}
-        >Mark as Critical
-        </button>
+        <br />
+        <hr className={styles.hr} />
+        <ButtonGroup>
+          <Button
+            className="MarkDone"
+            onClick={this.markAsDone}
+            color="success"
+          >
+            Mark as Done
+          </Button>
+          <Button
+            className="RemoveTodo"
+            onClick={this.removeTodo}
+            color="warning"
+          >
+            Remove Me
+          </Button>
+          <Button
+            className="MarkCritical"
+            onClick={this.markCritical}
+            color="danger"
+          >
+            Mark as Critical
+          </Button>
+        </ButtonGroup>
       </div>
     );
   }
