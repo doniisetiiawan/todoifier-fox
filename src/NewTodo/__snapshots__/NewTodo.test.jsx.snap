@@ -4,17 +4,24 @@ exports[`NewTodo renders and matches our snapshot 1`] = `
 <div
   className="NewTodo"
 >
-  <input
-    onChange={[Function]}
-    type="text"
-    value=""
-  />
-    
-  <button
-    onClick={[Function]}
-    type="button"
+  <div
+    className="input-group"
   >
-    Add
-  </button>
+    <input
+      className="form-control"
+      onChange={[Function]}
+      placeholder="Input item name here..."
+      type="text"
+      value=""
+    />
+    <button
+      aria-label={null}
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="button"
+    >
+      Add
+    </button>
+  </div>
 </div>
 `;
