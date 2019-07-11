@@ -13,7 +13,7 @@ class TodoList extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     const res = await fetch(
       'http://localhost:4000/api/todos',
       { accept: 'application/json' },
@@ -22,24 +22,34 @@ class TodoList extends Component {
     this.setState(
       { items: json.todos, loaded: true },
     );
-  }
-
-  addTodo = (description) => {
-    const newItem = {
-      description,
-      done: false,
-      critical: false,
-    };
-    const { items } = this.state;
-    this.setState({
-      items: [...items, newItem],
-    });
   };
 
   removeTodo = (removeItem) => {
     const { items } = this.state;
     const filteredItems = items.filter(todo => todo.description !== removeItem);
     this.setState({ items: filteredItems });
+  };
+
+  addTodo = async (description) => {
+    const res = await fetch(
+      'http://localhost:4000/api/todos', {
+        method: 'POST',
+        headers: { accept: 'application/json', 'content-type': 'application/json' },
+        body: JSON.stringify({ description, critical: false, done: false }),
+      },
+    );
+    if (res.status === 200) {
+      const { items } = this.state;
+      const newItem = {
+        id: items.length + 1,
+        description,
+        done: false,
+        critical: false,
+      };
+      this.setState({
+        items: [...items, newItem],
+      });
+    }
   };
 
   renderItems = () => {
