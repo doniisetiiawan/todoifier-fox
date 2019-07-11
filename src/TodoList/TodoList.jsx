@@ -1,47 +1,66 @@
 import React, { Component, Fragment } from 'react';
 import Todo from '../Todo';
 import NewTodo from '../NewTodo';
+
 import './TodoList.css';
 
 class TodoList extends Component {
   constructor(props) {
     super(props);
-    const [item1, item2, ...rest] = [
-      'Write some code',
-      'Change the world',
-      'Take a nap',
-      'Eat a cookie',
-    ];
     this.state = {
-      items: [item1, item2, rest.join(' and ')],
+      items: [],
+      loaded: false,
     };
   }
 
-  addTodo = (item) => {
+  async componentDidMount() {
+    const res = await fetch(
+      'http://localhost:4000/api/todos',
+      { accept: 'application/json' },
+    );
+    const json = await res.json();
+    this.setState(
+      { items: json.todos, loaded: true },
+    );
+  }
+
+  addTodo = (description) => {
+    const newItem = {
+      description,
+      done: false,
+      critical: false,
+    };
     const { items } = this.state;
-    this.setState({ items: [...items, item] });
+    this.setState({
+      items: [...items, newItem],
+    });
   };
 
   removeTodo = (removeItem) => {
     const { items } = this.state;
-    const filteredItems = items.filter(
-      description => description !== removeItem,
-    );
+    const filteredItems = items.filter(todo => todo.description !== removeItem);
     this.setState({ items: filteredItems });
   };
 
-  renderItems() {
-    const { items } = this.state;
-    return items.map(description => (
-      <Fragment key={`item-${description}`}>
-        <Todo
-          key={description}
-          description={description}
-          removeTodo={this.removeTodo}
-        />
-      </Fragment>
-    ));
-  }
+  renderItems = () => {
+    const { loaded } = this.state;
+    if (loaded) {
+      const { items } = this.state;
+      return items.map(todo => (
+        <Fragment key={`item-${todo.description}`}>
+          <Todo
+            id={todo.id}
+            key={todo.id}
+            description={todo.description}
+            removeTodo={this.removeTodo}
+            done={todo.done}
+            critical={todo.critical}
+          />
+        </Fragment>
+      ));
+    }
+    return <p>Still Loading...</p>;
+  };
 
   render() {
     return (

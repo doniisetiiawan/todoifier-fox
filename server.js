@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const port = 4000;
@@ -15,6 +16,7 @@ const todos = [
   },
 ];
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/api/todos', (req, res) => res.json({ todos }));

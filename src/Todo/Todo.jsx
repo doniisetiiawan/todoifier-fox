@@ -7,14 +7,16 @@ import styles from './Todo.module.scss';
 
 class Todo extends Component {
   static propTypes = {
+    critical: PropTypes.bool,
     description: PropTypes.string,
+    done: PropTypes.bool,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      done: false,
-      critical: false,
+      done: props.done,
+      critical: props.critical,
     };
   }
 
