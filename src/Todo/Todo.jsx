@@ -14,6 +14,7 @@ class Todo extends Component {
     this.state = {
       description: props.description,
       done: false,
+      critical: false,
     };
   }
 
@@ -22,8 +23,13 @@ class Todo extends Component {
   };
 
   cssClasses = () => {
-    let classes = [styles.todo];
-    const { done } = this.state;
+    let classes = [];
+    const { critical, done } = this.state;
+    if (critical) {
+      classes = [styles.critical];
+    } else {
+      classes = [styles.todo];
+    }
     if (done) {
       classes = [...classes, styles.done];
     }
@@ -34,6 +40,10 @@ class Todo extends Component {
     // eslint-disable-next-line react/prop-types
     const { removeTodo: removeTodo1, description } = this.props;
     removeTodo1(description);
+  };
+
+  markCritical = () => {
+    this.setState({ critical: true });
   };
 
   render() {
@@ -53,6 +63,12 @@ class Todo extends Component {
           className="RemoveTodo"
           onClick={this.removeTodo}
         >Remove Me
+        </button>
+        <button
+          type="button"
+          className="MarkCritical"
+          onClick={this.markCritical}
+        >Mark as Critical
         </button>
       </div>
     );
